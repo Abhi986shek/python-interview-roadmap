@@ -1,0 +1,54 @@
+"""
+Fizz Buzz
+
+Given an integer n, return a string array answer where:
+    - answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+    - answer[i] == "Fizz" if i is divisible by 3.
+    - answer[i] == "Buzz" if i is divisible by 5.
+    - answer[i] == i (as a string) if none of the above conditions are true.
+
+Example 1:
+    Input : n = 3
+    Output: ["1", "2", "Fizz"]
+
+Example 2:
+    Input : n = 5
+    Output: ["1", "2", "Fizz", "4", "Buzz"]
+
+Example 3:
+    Input : n = 15
+    Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+
+Constraints:
+    - 1 <= n <= 10^4
+
+Time Complexity  : O(n)
+Space Complexity : O(n)
+"""
+
+
+def fizz_buzz(n):
+    result = []
+    for i in range(1, n + 1):
+        if i % 15 == 0:
+            result.append("FizzBuzz")
+        elif i % 3 == 0:
+            result.append("Fizz")
+        elif i % 5 == 0:
+            result.append("Buzz")
+        else:
+            result.append(str(i))
+    return result
+
+
+try:
+    n = int(input("ENTER N\n"))
+    if n <= 0:
+        raise ValueError("N must be greater than 0.")
+
+    print(fizz_buzz(n))
+
+except ValueError as e:
+    print(f"Error: {e}")
+except Exception as e:
+    print(f"An error occurred: {e}")

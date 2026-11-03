@@ -90,29 +90,31 @@ def x_shape_stars(n):
                 print("  ", end="")
         print()
 
-def inverted_hollow_v(n):
-    """Pattern 11: Inverted hollow triangle structure"""
+def inverted_hollow_V(n):
     space = 0
-    star = n
+    star = 2 * n - 1
+
     for i in range(1, n + 1):
-        print(" " * space, end="")
+        for j in range(1, space + 1):
+            print(" ", end="")
         for j in range(1, star + 1):
             if j == 1 or j == star:
                 print("*", end="")
             else:
                 print(" ", end="")
+        print()
         space += 1
         star -= 2
-        print()
 
 def shape_A(n):
-    """Pattern 7: Hollow pyramid with a middle crossbar"""
     space = n - 1
     star = 1
     for i in range(1, n + 1):
-        print(" " * space, end="")
+        for j in range(1, space + 1):
+            print(" ", end="")
+
         for j in range(1, star + 1):
-            if j == 1 or j == star or (j >= 1 and i == n // 2 + 1):
+            if j == 1 or j == star or i == n // 2 + 1:
                 print("*", end="")
             else:
                 print(" ", end="")

@@ -124,32 +124,6 @@ def butterfly_optimized(n):
             space -= 2
 
 
-# 6. Hollow Diamond in Stars
-def hollow_diamond_in_stars(n):
-    if n % 2 == 0:
-        n += 1
-
-    star = n // 2 + 1
-    space = 1
-
-    for i in range(1, n + 1):
-        for j in range(1, star + 1):
-            print("*", end="")
-
-        for j in range(1, space + 1):
-            print(" ", end="")
-
-        for j in range(1, star + 1):
-            print("*", end="")
-
-        print()
-
-        if i <= n // 2:
-            star -= 1
-            space += 2
-        else:
-            star += 1
-            space -= 2
 
 
 # Main Menu
@@ -159,7 +133,6 @@ def main():
     print("3. Inverted Diamond / Butterfly")
     print("4. Optimized Solid Diamond")
     print("5. Optimized Butterfly")
-    print("6. Hollow Diamond in Stars")
 
     choice = int(input("ENTER YOUR CHOICE: "))
     n = int(input("ENTER NUMBER OF ROWS: "))
@@ -174,8 +147,6 @@ def main():
         solid_diamond_optimized(n)
     elif choice == 5:
         butterfly_optimized(n)
-    elif choice == 6:
-        hollow_diamond_in_stars(n)
     else:
         print("Invalid choice")
 

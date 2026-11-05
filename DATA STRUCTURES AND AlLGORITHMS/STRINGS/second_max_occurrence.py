@@ -3,20 +3,20 @@ Identifies both the most frequent and the second most frequent characters in a s
 """
 from collections import Counter
 
-try:
-    user_input = input("ENTER THE STRING\n")
-    counts = Counter(user_input)
+user_input = input("ENTER THE STRING\n")
 
-    # Sort counts by value descending
-    sorted_counts = counts.most_common()
+counts = Counter(user_input)
 
-    if len(sorted_counts) < 2:
-        print("Not enough unique characters to find a second maximum.")
-    else:
-        max1_char, max1_val = sorted_counts[0]
-        max2_char, max2_val = sorted_counts[1]
+sorted_chars = sorted(
+    counts.items(),
+    key=lambda x: x[1],
+    reverse=True
+)
 
-        print(f"{max1_char} IS THE HIGHEST ONE OCCURING WITH A COUNT OF ={max1_val}")
-        print(f"{max2_char} IS THE SECOND HIGHEST ONE OCCURING WITH A COUNT OF ={max2_val}")
-except Exception as e:
-    print(f"An error occurred: {e}")
+if len(sorted_chars) >= 2:
+    char, count = sorted_chars[1]
+
+    print(f"Second highest character: {char}")
+    print(f"Count: {count}")
+else:
+    print("Not enough unique characters.")

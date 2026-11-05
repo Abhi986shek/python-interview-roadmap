@@ -4,37 +4,32 @@ Finds the smallest window in s1 containing all characters of s2.
 from collections import Counter
 
 def find_smallest_window(s1, s2):
-    if not s2 or not s1: return ""
-    
-    target_count = Counter(s2)
-    required = len(target_count)
-    
-    l, r = 0, 0
-    formed = 0
-    window_counts = {}
-    
-    # (length, left, right)
-    ans = float("inf"), None, None
-    
-    while r < len(s1):
-        char = s1[r]
-        window_counts[char] = window_counts.get(char, 0) + 1
-        
-        if char in target_count and window_counts[char] == target_count[char]:
-            formed += 1
-            
-        while l <= r and formed == required:
-            char = s1[l]
-            if r - l + 1 < ans[0]:
-                ans = (r - l + 1, l, r)
-            
-            window_counts[char] -= 1
-            if char in target_count and window_counts[char] < target_count[char]:
-                formed -= 1
-            l += 1
-        r += 1
-        
-    return "" if ans[0] == float("inf") else s1[ans[1] : ans[2] + 1]
+
+    smallest = ""
+
+    for i in range(len(s1)):
+
+        current = ""
+
+        for j in range(i, len(s1)):
+
+            current = current + s1[j]
+
+            valid = True
+
+            for char in s2:
+                if current.count(char) < s2.count(char):
+                    valid = False
+                    break
+
+            if valid:
+                if smallest == "" or len(current) < len(smallest):
+                    smallest = current
+
+                break
+
+    return smallest
+
 
 try:
     s1 = input("ENTER THE MAIN STRING\n")

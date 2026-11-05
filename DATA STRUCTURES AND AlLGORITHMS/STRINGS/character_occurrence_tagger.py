@@ -2,7 +2,7 @@
 Module: character_occurrence_tagger.py
 Description: Tags each character with its occurrence number for repeated instances.
 Logic: Iterates through the character list; when a character repeats, replaces
-subsequent occurrences with their count index (e.g., "aab" -> "a1a2b").
+subsequent occurrences with their count index (e.g., "aab" -> "a2b").
 """
 try:
     s = list(input("ENTER THE STRING\n"))

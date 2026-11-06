@@ -8,18 +8,36 @@ Array: [1, 5, 3, 2, 4], Target: 6 -> Pairs: (1,5), (2,4)
 """
 
 def find_pairs_with_sum(arr, target):
-    seen = set()
-    pairs = []
-    visited = set()
+    arr = sorted(arr)
 
-    for num in arr:
-        complement = target - num
-        if complement in seen and (min(num, complement), max(num, complement)) not in visited:
-            pairs.append((min(num, complement), max(num, complement)))
-            visited.add((min(num, complement), max(num, complement)))
-        seen.add(num)
+    left = 0
+    right = len(arr) - 1
+    pairs = []
+
+    while left < right:
+        total = arr[left] + arr[right]
+
+        if total == target:
+            pairs.append((arr[left], arr[right]))
+
+            left += 1
+            right -= 1
+
+            # Skip duplicate elements
+            while left < right and arr[left] == arr[left - 1]:
+                left += 1
+
+            while left < right and arr[right] == arr[right + 1]:
+                right -= 1
+
+        elif total < target:
+            left += 1
+
+        else:
+            right -= 1
 
     return pairs
+
 
 
 try:

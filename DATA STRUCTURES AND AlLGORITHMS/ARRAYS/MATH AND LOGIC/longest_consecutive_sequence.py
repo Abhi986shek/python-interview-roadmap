@@ -8,22 +8,23 @@ Array: [100, 4, 200, 1, 3, 2] -> Length: 4 (sequence: 1, 2, 3, 4)
 """
 
 def longest_consecutive(arr):
-    num_set = set(arr)
-    max_length = 0
+    arr = sorted(set(arr))
 
-    for num in num_set:
-        # only start counting from the beginning of a sequence
-        if num - 1 not in num_set:
-            current = num
-            length = 1
+    if not arr:
+        return 0
 
-            while current + 1 in num_set:
-                current += 1
-                length += 1
+    count = 1
+    max_count = 1
 
-            max_length = max(max_length, length)
+    for i in range(1, len(arr)):
+        if arr[i] == arr[i - 1] + 1:
+            count += 1
+        else:
+            count = 1
 
-    return max_length
+        max_count = max(max_count, count)
+
+    return max_count
 
 
 try:

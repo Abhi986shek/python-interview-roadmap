@@ -9,18 +9,15 @@ Array: [1, 1, 1], k = 2 -> Count: 2
 
 def subarray_sum_equals_k(arr, k):
     count = 0
-    prefix_sum = 0
-    # stores how many times a prefix sum has occurred
-    freq = {0: 1}
 
-    for num in arr:
-        prefix_sum += num
+    for i in range(len(arr)):
+        total = 0
 
-        # if (prefix_sum - k) was seen before, those subarrays sum to k
-        if prefix_sum - k in freq:
-            count += freq[prefix_sum - k]
+        for j in range(i, len(arr)):
+            total += arr[j]
 
-        freq[prefix_sum] = freq.get(prefix_sum, 0) + 1
+            if total == k:
+                count += 1
 
     return count
 

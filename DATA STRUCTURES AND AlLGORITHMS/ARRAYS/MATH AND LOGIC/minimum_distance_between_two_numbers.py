@@ -7,18 +7,30 @@ Example:
 Array: [3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3], x = 3, y = 6 -> Min Distance: 4
 """
 
+# def min_distance(arr, x, y):
+#     last_x = last_y = -1
+#     min_dist = float('inf')
+
+#     for i, num in enumerate(arr):
+#         if num == x:
+#             last_x = i
+#         elif num == y:
+#             last_y = i
+
+#         if last_x != -1 and last_y != -1:
+#             min_dist = min(min_dist, abs(last_x - last_y))
+
+#     return min_dist if min_dist != float('inf') else -1
+
+
 def min_distance(arr, x, y):
-    last_x = last_y = -1
     min_dist = float('inf')
 
-    for i, num in enumerate(arr):
-        if num == x:
-            last_x = i
-        elif num == y:
-            last_y = i
-
-        if last_x != -1 and last_y != -1:
-            min_dist = min(min_dist, abs(last_x - last_y))
+    for i in range(len(arr)):
+        if arr[i] == x:
+            for j in range(len(arr)):
+                if arr[j] == y:
+                    min_dist = min(min_dist, abs(i - j))
 
     return min_dist if min_dist != float('inf') else -1
 

@@ -9,18 +9,13 @@ Array: [1, 2, 3]     -> Answer: 4
 """
 
 def smallest_missing_positive(arr):
-    n = len(arr)
+    nums = set(arr)
+    num = 1
 
-    # place each number in its correct index position (num at index num-1)
-    for i in range(n):
-        while 1 <= arr[i] <= n and arr[arr[i] - 1] != arr[i]:
-            arr[arr[i] - 1], arr[i] = arr[i], arr[arr[i] - 1]
+    while num in nums:
+        num += 1
 
-    for i in range(n):
-        if arr[i] != i + 1:
-            return i + 1
-
-    return n + 1
+    return num
 
 
 try:

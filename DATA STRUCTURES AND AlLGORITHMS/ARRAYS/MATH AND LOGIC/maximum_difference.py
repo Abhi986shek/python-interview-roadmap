@@ -7,16 +7,29 @@ Example:
 Array: [2, 3, 10, 6, 4, 8, 1] -> Max Difference: 8 (10 - 2)
 """
 
+# def max_difference(arr):
+#     if len(arr) < 2:
+#         raise ValueError("Array must have at least 2 elements.")
+
+#     min_so_far = arr[0]
+#     max_diff = arr[1] - arr[0]
+
+#     for i in range(1, len(arr)):
+#         max_diff = max(max_diff, arr[i] - min_so_far)
+#         min_so_far = min(min_so_far, arr[i])
+
+#     return max_diff
+
 def max_difference(arr):
     if len(arr) < 2:
         raise ValueError("Array must have at least 2 elements.")
 
-    min_so_far = arr[0]
     max_diff = arr[1] - arr[0]
 
-    for i in range(1, len(arr)):
-        max_diff = max(max_diff, arr[i] - min_so_far)
-        min_so_far = min(min_so_far, arr[i])
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            difference = arr[j] - arr[i]
+            max_diff = max(max_diff, difference)
 
     return max_diff
 

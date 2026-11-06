@@ -9,22 +9,21 @@ Array: [-2, 1, -3, 4, -1, 2, 1, -5, 4] -> Max Sum: 6, Subarray: [4, -1, 2, 1]
 
 def max_subarray_sum(arr):
     max_sum = arr[0]
-    current_sum = arr[0]
-    start = end = temp_start = 0
+    best_subarray = []
 
-    for i in range(1, len(arr)):
-        if current_sum + arr[i] < arr[i]:
-            current_sum = arr[i]
-            temp_start = i
-        else:
-            current_sum += arr[i]
+    for i in range(len(arr)):
+        current_sum = 0
 
-        if current_sum > max_sum:
-            max_sum = current_sum
-            start = temp_start
-            end = i
+        for j in range(i, len(arr)):
+            current_sum += arr[j]
 
-    return max_sum, arr[start:end + 1]
+            if current_sum == max(current_sum, max_sum):
+                if current_sum > max_sum:
+                    best_subarray = arr[i:j + 1]
+
+            max_sum = max(max_sum, current_sum)
+
+    return max_sum, best_subarray
 
 
 try:

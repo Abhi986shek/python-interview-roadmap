@@ -8,12 +8,25 @@ Array: [10, 15, 3, 7], Target: 17 -> True (10 + 7)
 """
 
 def has_pair_with_sum(arr, target):
-    seen = set()
-    for num in arr:
-        if target - num in seen:
-            return True, (target - num, num)
-        seen.add(num)
+    arr = sorted(arr)
+
+    left = 0
+    right = len(arr) - 1
+
+    while left < right:
+        total = arr[left] + arr[right]
+
+        if total == target:
+            return True, (arr[left], arr[right])
+
+        elif total < target:
+            left += 1
+
+        else:
+            right -= 1
+
     return False, None
+
 
 
 try:

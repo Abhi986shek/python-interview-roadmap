@@ -9,34 +9,19 @@ Array: [1, 2, 3, 4] -> Output: [24, 12, 8, 6]
 """
 
 def product_except_self(arr):
-    n = len(arr)
-    result = [1] * n
+    result = []
 
-    # left pass: result[i] = product of all elements to the left of i
-    prefix = 1
-    for i in range(n):
-        result[i] = prefix
-        prefix *= arr[i]
+    for i in range(len(arr)):
+        product = 1
 
-    # right pass: multiply by product of all elements to the right of i
-    suffix = 1
-    for i in range(n - 1, -1, -1):
-        result[i] *= suffix
-        suffix *= arr[i]
+        for j in range(len(arr)):
+            if i != j:
+                product *= arr[j]
+
+        result.append(product)
 
     return result
 
 
-try:
-    raw = input("ENTER THE ARRAY ELEMENTS (space separated)\n")
-    arr = list(map(int, raw.split()))
-
-    if not arr:
-        raise ValueError("Array cannot be empty.")
-
-    print(f"PRODUCT ARRAY EXCEPT SELF: {product_except_self(arr)}")
-
-except ValueError as e:
-    print(f"Error: {e}")
-except Exception as e:
-    print(f"An error occurred: {e}")
+arr = [1, 2, 3, 4]
+print(product_except_self(arr))

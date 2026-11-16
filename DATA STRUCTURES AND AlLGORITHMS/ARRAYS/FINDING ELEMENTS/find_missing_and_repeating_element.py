@@ -9,20 +9,18 @@ Array: [3, 1, 3] -> Repeating: 3, Missing: 2
 """
 
 def find_missing_and_repeating(arr):
-    n = len(arr)
     seen = set()
-    repeating = -1
+    repeating = set()
 
     for num in arr:
         if num in seen:
-            repeating = num
+            repeating.add(num)
         seen.add(num)
 
-    expected_sum = n * (n + 1) // 2
+    expected_sum = len(arr) * (len(arr) + 1) // 2
     actual_sum = sum(arr)
 
-    # actual_sum = expected_sum - missing + repeating
-    missing = expected_sum - actual_sum + repeating
+    missing = expected_sum - actual_sum + sum(repeating)
 
     return repeating, missing
 

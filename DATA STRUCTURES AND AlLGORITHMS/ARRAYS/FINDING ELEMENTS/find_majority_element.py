@@ -8,18 +8,33 @@ Example:
 Array: [3, 2, 3] -> Majority: 3
 """
 
+# from collections import Counter
+
+# def find_majority_element(arr):
+#     if not arr:
+#         return None
+
+#     counts = Counter(arr)
+
+#     for num, count in counts.items():
+#         if count > len(arr) // 2:
+#             return num
+
+#     return None
+
+
 def find_majority_element(arr):
-    candidate = None
-    count = 0
+    if not arr:
+        return None
+
+    freq = {}
 
     for num in arr:
-        if count == 0:
-            candidate = num
-        count += 1 if num == candidate else -1
+        freq[num] = freq.get(num, 0) + 1
 
-    # verify the candidate is actually a majority
-    if arr.count(candidate) > len(arr) // 2:
-        return candidate
+    for num, count in freq.items():
+        if count > len(arr) // 2:
+            return num
 
     return None
 

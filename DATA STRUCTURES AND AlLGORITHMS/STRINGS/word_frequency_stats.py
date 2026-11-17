@@ -2,7 +2,7 @@
 Calculates the frequency of each word in a string and identifies 
 the words with the maximum and minimum occurrences.
 """
-tfrom collections import Counter
+from collections import Counter
 
 try:
     user_input = input("ENTER THE STRING\n").strip()

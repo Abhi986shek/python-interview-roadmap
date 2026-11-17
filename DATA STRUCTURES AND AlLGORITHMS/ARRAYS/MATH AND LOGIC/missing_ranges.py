@@ -10,21 +10,22 @@ Missing: ["2", "4->49", "51->74", "76->99"]
 
 def find_missing_ranges(arr, lower, upper):
     result = []
-    prev = lower - 1
+    prev = lower
 
-    for i in range(len(arr) + 1):
-        curr = arr[i] if i < len(arr) else upper + 1
+    for num in arr + [upper + 1]:
 
-        if curr - prev >= 2:
-            if curr - prev == 2:
-                result.append(str(prev + 1))
-            else:
-                result.append(f"{prev + 1}->{curr - 1}")
+        if num > prev:
+            start = prev
+            end = num - 1
 
-        prev = curr
+            if start == end:
+                result.append(str(start))
+            elif start < end:
+                result.append(f"{start}->{end}")
+
+        prev = num + 1
 
     return result
-
 
 try:
     raw = input("ENTER THE SORTED ARRAY ELEMENTS (space separated)\n")
